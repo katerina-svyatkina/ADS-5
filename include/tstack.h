@@ -4,7 +4,7 @@
 
 template<typename T, int size>
 class TStack {
-private:
+ private:
      T arr[size];
      int top;
  public:
@@ -16,12 +16,7 @@ private:
          return top == size - 1;
      }
      T get() {
-         if (isEmpty()) {
-             //throw "empty!";
-
-         } else {
-             return arr[top];
-         }
+         return arr[top];
      }
      void pop() {
          if (top >= 0)
