@@ -63,7 +63,7 @@ std::string infx2pstfx(std::string inf) {
     }
     return post;
 }
-int eval(std::string const &post) {
+int eval(std::string post) {
     TStack <int, 100> stack2;
     std::string temp;
     int op1 = 0, op2 = 0;
@@ -76,8 +76,7 @@ int eval(std::string const &post) {
                 start = end + 1;
                 if (isDigit(temp)) {
                     stack2.push(std::stoi(temp));
-                }
-                else {
+                } else {
                     op2 = stack2.get();
                     stack2.pop();
                     op1 = stack2.get();
