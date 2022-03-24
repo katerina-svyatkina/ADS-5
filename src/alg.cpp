@@ -63,7 +63,7 @@ std::string infx2pstfx(std::string inf) {
     }
     return post;
 }
-int eval(std::string const &post) {
+int eval(std::string post) {
     TStack <int, 100> stack2;
     std::string temp;
     int op1 = 0, op2 = 0;
