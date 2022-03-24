@@ -76,8 +76,7 @@ int eval(std::string const &post) {
                 start = end + 1;
                 if (isDigit(temp)) {
                     stack2.push(std::stoi(temp));
-                }
-                else {
+                } else {
                     op2 = stack2.get();
                     stack2.pop();
                     op1 = stack2.get();
