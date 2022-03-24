@@ -32,24 +32,24 @@ std::string infx2pstfx(std::string inf) {
     for (size_t i = 0; i < inf.size(); ++i) {
         int pr = priority(inf[i]);
         if (pr == -1) {
-            post.push_back(inf[i]);
-            if (priority(inf[i + 1]) != -1) {
+            if (!post.empty() && priority(inf[i - 1]) != -1) {
                 post.push_back(' ');
             }
+            post.push_back(inf[i]);
         } else if (pr == 0 || pr > priority(stack1.get()) || stack1.isEmpty()) {
             stack1.push(inf[i]);
         } else {
             if (pr == 1) {
                 while (stack1.get() != '(') {
-                    post.push_back(stack1.get());
                     post.push_back(' ');
+                    post.push_back(stack1.get());
                     stack1.pop();
                 }
                 stack1.pop();
             } else {
                 while (priority(stack1.get()) >= pr) {
-                    post.push_back(stack1.get());
                     post.push_back(' ');
+                    post.push_back(stack1.get());
                     stack1.pop();
                 }
                 stack1.push(inf[i]);
@@ -63,7 +63,7 @@ std::string infx2pstfx(std::string inf) {
     }
     return post;
 }
-int eval(std::string post) {
+int eval(std::string const &post) {
     TStack <int, 100> stack2;
     std::string temp;
     int op1 = 0, op2 = 0;
@@ -76,7 +76,8 @@ int eval(std::string post) {
                 start = end + 1;
                 if (isDigit(temp)) {
                     stack2.push(std::stoi(temp));
-                } else {
+                }
+                else {
                     op2 = stack2.get();
                     stack2.pop();
                     op1 = stack2.get();
